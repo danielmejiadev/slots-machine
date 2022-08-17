@@ -26,7 +26,7 @@ const cheat = (chance: number): [number, number, number] | undefined => {
   }
 };
 
-const game = {
+let game = {
   houseCheats: 0,
   credits: 10,
   cost: 1,
@@ -89,12 +89,14 @@ export class AppService {
       }
     }
 
-    return {
+    game = {
       ...game,
       result: playResult,
       houseCheats,
       credits: game.credits - game.cost + reward,
     };
+
+    return game;
   }
 
   cashOut(): UserAccount {
