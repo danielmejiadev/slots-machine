@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.Slot-machine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slots {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+}

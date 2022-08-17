@@ -1,23 +1,14 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import SlotMachine from './components/SlotMachine';
+import Initializer from './components/Initializer';
 
 function App() {
+  const [playing, setPlaying] = useState(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {playing ? <SlotMachine /> : <Initializer onInit={() => setPlaying(true)}/>}
     </div>
   );
 }
