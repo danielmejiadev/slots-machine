@@ -9,7 +9,7 @@ function GameReporter({ game, play }) {
         <span>User Credits: {game.credits}</span>
         <div className='slots'>
           {game.result.map((value, index) => (
-            <div> 
+            <div key={value || index}> 
               {game.symbols[value || index].icon}
             </div>
           ))}
