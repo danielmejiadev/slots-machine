@@ -1,15 +1,29 @@
 import { Injectable } from '@nestjs/common';
 
-const getRandomResult = () => {
-  return 0;
+function randomIntFromInterval(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+const getRandomResult = (): [number, number, number] => {
+  return [
+    randomIntFromInterval(0, 3),
+    randomIntFromInterval(0, 3),
+    randomIntFromInterval(0, 3),
+  ];
 };
 
-const slightlyCheat = () => {
-  return 0;
+const wonRound = (result: [number, number, number]): boolean => {
+  return result.every((value) => value === result[0]);
 };
 
-const cheat = () => {
-  return 0;
+const cheat = (chance: number): [number, number, number] | undefined => {
+  const percentage = randomIntFromInterval(1, 100);
+  const reRollResult = getRandomResult();
+
+  if (percentage <= chance && wonRound(reRollResult)) {
+    // Meaning chance% of enter here
+    return reRollResult;
+  }
 };
 
 const game = {
@@ -56,21 +70,30 @@ export class AppService {
   }
 
   play(): GameType {
-    let result;
-    if (game.credits < 40) {
-      result = getRandomResult();
-    } else if (game.credits >= 40 && game.credits < 60) {
-      game.houseCheats += 1;
-      result = slightlyCheat();
-    } else {
-      game.houseCheats += 1;
-      result = cheat();
+    let playResult = getRandomResult();
+    let reward = 0;
+    let houseCheats = game.houseCheats;
+
+    if (wonRound(playResult)) {
+      if (game.credits > 60) {
+        playResult = cheat(60) || playResult;
+        houseCheats += 1;
+      } else if (game.credits <= 60 && game.credits >= 40) {
+        houseCheats += 1;
+        playResult = cheat(30) || playResult;
+      }
+
+      if (wonRound(playResult)) {
+        const [indexWinner] = playResult;
+        reward = game.symbols[indexWinner].reward;
+      }
     }
 
     return {
       ...game,
-      result,
-      credits: game.credits - game.cost,
+      result: playResult,
+      houseCheats,
+      credits: game.credits - game.cost + reward,
     };
   }
 
