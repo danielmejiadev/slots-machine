@@ -1,6 +1,6 @@
 ### Objective
 
-Jackpot! You've landed a summer gig in Las Vegas! Unfortunately, it's 2022, and the casinos are closed due to COVID-19. Your boss wants to move some of the business online and asks you to build a fullstack app — a simple slot machine game, with a little twist. Build it to ensure that the house always wins!
+tT build a fullstack app — a simple slot machine game, with a little twist. Build it to ensure that the house always wins!
 
 ### Brief
 
@@ -51,19 +51,3 @@ There is  CASH OUT button on the screen - bonus if you implement the twist.
   - If the user wins the round, their session credit is increased by the amount from the server response, else it is deducted by 1.
 - Include a button on the screen that says "CASH OUT"
 - BONUS: when the user hovers it, there is 50% chance that button moves in a random direction by 300px, and 40% chance that it becomes unclickable (this roll should be done on client side). If they succeed to hit it, credits from session are moved to their account.
-
-### Evaluation Criteria
-
-- *Node* best practices
-- Design: A well thought out API and UI components that can be communicated with others.
-- Correctness: does the solution perform in sensible, thought-out ways?
-- Maintainability: is the code written in a clean, maintainable way?
-- BONUD - Testing: was the system adequately tested?
-
-### CodeSubmit
-
-Please organize, design, test and document your code as if it were going into production - then push your changes to the master branch. After you have pushed your code, you may submit the assignment on the assignment page.
-
-All the best and happy coding,
-
-The Piiq Technologies Team
